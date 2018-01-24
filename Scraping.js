@@ -1,6 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var mongoose = require('mongoose');
+var CafeNoiDia = require('./model/CafeNoiDia')
 var db = require('./db');
 request('https://giacaphe.com', function (error, response, html) {
     if (!error && response.statusCode == 200) {
@@ -17,16 +18,14 @@ request('https://giacaphe.com', function (error, response, html) {
             }
         });
         console.log(JSON.stringify(json));
-
-        // Tao moi 
-        for(var GiaNoiDiaItem in json){
-            new GiaNoiDia(json[GiaNoiDiaItem]).save().catch((err)=>{
+        // Duyệt list và Insert vào database mongodb 
+        for(var item in json){
+            new CafeNoiDia(json[item]).save().catch((err)=>{
                 console.log(err.message);
             });
         }
 
         // Update 
-
         // var update  = {"ten_thi_truong":"Cà phê London (05/18)","gia":"2000","thay_doi":"+32(1.8%)"};
         // var options = {upsert: true};
         // GiaNoiDia.findOneAndUpdate(update.ten_thi_truong, update, options, (err)=> {console.log("ERROR: " + err)});
