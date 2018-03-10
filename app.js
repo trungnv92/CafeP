@@ -5,6 +5,6 @@ var db = require('./db');
 var CafeNoiDiaController = require('./CafeNoiDiaController');
 var HoTieuNoiDiaController = require('./HoTieuNoiDiaController');
 
-//app.use('/giacaphe', CafeNoiDiaController);
+app.use('/giacaphe', CafeNoiDiaController);
 app.use('/giahotieu', HoTieuNoiDiaController);
 module.exports = app;
