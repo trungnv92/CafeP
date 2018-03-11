@@ -18,7 +18,7 @@ var cron = require('node-cron');
 var request = require('request');
 var cheerio = require('cheerio');
 var mongoose = require('mongoose');
-cron.schedule('00 15 * * * *', function(){
+cron.schedule('* * * * * *', function(){
     console.log('running a task every minute');
     request('https://giacaphe.com', function (error, response, html) {
     if (!error && response.statusCode == 200) {
